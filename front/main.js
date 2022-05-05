@@ -1,8 +1,8 @@
 const FORM = document.querySelector("#form");
 
 FORM.addEventListener("submit", (e) => {
-    const EMAIL = document.querySelector("#email").value;
-    const PASSWORD = document.querySelector("#password").value;
+    const EMAIL = document.querySelector("#email");
+    const PASSWORD = document.querySelector("#password");
 
     e.preventDefault();
 
@@ -12,11 +12,14 @@ FORM.addEventListener("submit", (e) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            email: EMAIL,
-            password: PASSWORD
+            email: EMAIL.value,
+            password: PASSWORD.value
         })
     }).then(res => res.json())
         .then(data => {
             console.log(data);
         });
+
+    EMAIL.value = "";
+    PASSWORD.value = "";
 });
